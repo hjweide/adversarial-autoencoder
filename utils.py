@@ -2,18 +2,22 @@ import numpy as np
 from sklearn.utils import shuffle
 
 
+# download mnist here: http://yann.lecun.com/exdb/mnist/
+# g-unzip and copy to mnist directory
+# inspiration:
+# https://github.com/Newmu/dcgan_code/blob/master/mnist/load.py#L14
 def load_mnist():
-    with open('data/train-images.idx3-ubyte', 'rb') as f:
+    with open('mnist/train-images-idx3-ubyte', 'rb') as f:
         data = np.fromfile(file=f, dtype=np.uint8)
     X_train = data[16:].reshape(60000, 28 * 28).astype(np.float32)
-    with open('data/train-labels.idx1-ubyte', 'rb') as f:
+    with open('mnist/train-labels-idx1-ubyte', 'rb') as f:
         data = np.fromfile(file=f, dtype=np.uint8)
     y_train = data[8:].reshape(60000).astype(np.uint8)
 
-    with open('data/t10k-images.idx3-ubyte', 'rb') as f:
+    with open('mnist/t10k-images-idx3-ubyte', 'rb') as f:
         data = np.fromfile(file=f, dtype=np.uint8)
     X_test = data[16:].reshape(10000, 28 * 28).astype(np.float32)
-    with open('data/t10k-labels.idx1-ubyte', 'rb') as f:
+    with open('mnist/t10k-labels-idx1-ubyte', 'rb') as f:
         data = np.fromfile(file=f, dtype=np.uint8)
     y_test = data[8:].reshape(10000).astype(np.uint8)
 
